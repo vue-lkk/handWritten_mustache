@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container"></div>
+  <script src="/xuni/bundle.js"></script>
+  <script>
+    // 模板字符串
+    let templateStr = `
+    <div>
+      <ol>
+        {{#students}}
+          <li>
+            学生{{name}}的爱好是
+            <ol>
+              {{#hobbies}}
+              <li>{{.}}</li>
+              {{/hobbies}}
+            </ol>
+          </li>
+        {{/students}}
+      </ol>
+    </div>
+    `
+    // 数据
+    let data = {
+      students:[
+        {'name':'小明','hobbies':['游泳','健身']},
+        {'name':'小红','hobbies':['足球','篮球','羽毛球']},
+        {'name':'小强','hobbies':['吃饭','睡觉']}
+      ]
+    }
+
+    // 简单测试 + 测试处理点符号a.b.c 
+    // let templateStr = '我爱{{somebody}},{{somebody}}也爱我{{a.b.c}}'
+    // let data = {
+    //   somebody:'尚硅谷',
+    //   a:{
+    //     b:{
+    //       c:1000
+    //     }
+    //   }
+    // }
+    
+    // 调用render
+    const domStr = Lkk_TemplateEngine.render(templateStr,data)
+    const container = document.querySelector('.container')
+    container.innerHTML = domStr
+    console.log(domStr)
+  </script>
+</body>
+</html>
+
